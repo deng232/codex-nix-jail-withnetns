@@ -1,5 +1,5 @@
 # codex-nix-jail-withnetns
-try to isolate ai agent without sudo or cap_sys_admin in delcartive way; and with netns to isolate networking stack, which bubblewrap don't support well.
+try to isolate ai agent without sudo or cap_sys_admin in delcartive way; and with netns to isolate networking stack, which bubblewrap only provide either not netns or just unshare netns.
 
 create ns fd requre sudo or cap_sys_admin
 nsenter require sudo
