@@ -33,7 +33,7 @@ let
       network
       (add-runtime "export BROWSER=firefox")
       #(set-env "BROWSER" "${firefox}/bin/firefox")
-      open-urls-in-browser # don't work with rootlesskit, firefox can't connect to localhost
+      open-urls-in-browser # don't work with rootlesskit, firefox can't connect to localhost:{xxx}
       # If your jail DSL supports argv only:
       (set-argv [ "-i" ])
     ]
