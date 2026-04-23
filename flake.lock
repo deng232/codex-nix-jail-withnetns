@@ -1,0 +1,44 @@
+{
+  "nodes": {
+    "jail-nix": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1772137954,
+        "narHash": "sha256-h4MGNbOo7L3RHi4uNFmsg5g17/DHXEfnv/xiG6BrNFQ=",
+        "ref": "refs/heads/main",
+        "rev": "42b355c38ca63dab4904acc5c0d95f17954a8c9b",
+        "revCount": 111,
+        "type": "git",
+        "url": "https://git.sr.ht/~alexdavid/jail.nix"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.sr.ht/~alexdavid/jail.nix"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1776548001,
+        "narHash": "sha256-ZSK0NL4a1BwVbbTBoSnWgbJy9HeZFXLYQizjb2DPF24=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "b12141ef619e0a9c1c84dc8c684040326f27cdcc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "jail-nix": "jail-nix",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

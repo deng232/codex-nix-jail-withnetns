@@ -53,6 +53,7 @@ let
       exec ${pkgs.rootlesskit}/bin/rootlesskit \
         --net=slirp4netns \
         --slirp4netns-binary ${pkgs.slirp4netns}/bin/slirp4netns \
+        --disable-host-loopback \
         --port-driver=builtin \
         -p 127.0.0.1:1455:1455/tcp \
         ${innerDrv}/bin/${name}
