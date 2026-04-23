@@ -8,7 +8,7 @@ let
     ref = "main";
   }) { };
   jail = jail-nix.init pkgs;
-  codex-env = import ./jail.nix { inherit jail pkgs; };
+  jailed-tools = import ./jail.nix { inherit jail pkgs; };
 in
 
 pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
@@ -24,7 +24,7 @@ pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
     libselinux
     libxslt
     bash-completion
-    codex-env
+    jailed-tools
     slirp4netns
   ];
 

@@ -1,9 +1,34 @@
 # codex-nix-jail-withnetns
-try to isolate ai agent without sudo or cap_sys_admin in delcartive way; and with netns to isolate networking stack, which bubblewrap only provide either not netns or just unshare netns.
 
-create ns fd requre sudo or cap_sys_admin \
-nsenter require sudo \
-shell process can't do namespacing as it can only fork process.\
+Try to isolate an AI agent without `sudo` or `cap_sys_admin` in a declarative way, and with netns to isolate the networking stack. Bubblewrap only provides either no netns or simple netns unsharing.
 
+`create ns fd` requires `sudo` or `cap_sys_admin`.
+`nsenter` requires `sudo`.
+A shell process cannot do namespacing on itself because it can only fork child processes.
 
-todo, figure out how podman handle persistant file without mount fd.
+## Flake usage
+
+This repository exports multiple apps.
+
+- Run default app (`jailed-codex`):
+
+  ```bash
+  nix run "github:<owner>/<repo>"
+  ```
+
+- Run a specific app when multiple apps are defined:
+
+  ```bash
+  nix run "github:<owner>/<repo>#jailed-env"
+  nix run "github:<owner>/<repo>#jailed-codex"
+  ```
+
+- Inspect which apps are available:
+
+  ```bash
+  nix flake show "github:<owner>/<repo>"
+  ```
+
+## TODO
+
+Figure out how podman handles persistent files without mount fd.
