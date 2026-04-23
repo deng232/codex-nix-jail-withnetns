@@ -1,6 +1,8 @@
 # codex-nix-jail-withnetns
 
-Try to isolate an AI agent without `sudo` or `cap_sys_admin` in a declarative way, and with netns to isolate the networking stack. Bubblewrap only provides either no netns or simple netns unsharing.
+Currently codex can only do read/write file in pwd,accessing internet; it cann't access any other tools other than defined in the jail.nix
+
+Try to isolate an AI agent without `sudo` or `cap_sys_admin`, and with netns to isolate the networking stack. Bubblewrap only provides either no netns or simple netns unsharing.
 
 `create ns fd` requires `sudo` or `cap_sys_admin`.
 `nsenter` requires `sudo`.
