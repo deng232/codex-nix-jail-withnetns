@@ -20,7 +20,8 @@ let
     ignoreCollisions = true;
   };
 
-  mkJail = name: program: argv:
+  mkJail =
+    name: program: argv:
     jail name program (
       c: with c; [
         mount-cwd
@@ -40,12 +41,18 @@ let
     );
 
   jailed-env-inner = mkJail "jailed-env" "${pkgs.bashInteractive}/bin/bash" [ "-i" ];
-  jailed-codex-inner = mkJail "jailed-codex" "${pkgs.zsh}/bin/zsh" [ "-i" "-c" "codex" ];
+  jailed-codex-inner = mkJail "jailed-codex" "${pkgs.zsh}/bin/zsh" [
+    "-i"
+    "-c"
+    "codex"
+  ];
 
-  mkRootlessRunner = name: innerDrv:
+  mkRootlessRunner =
+    name: innerDrv:
     pkgs.writeShellScriptBin name ''
       exec ${pkgs.rootlesskit}/bin/rootlesskit \
         --net=slirp4netns \
+        --slirp4netns-binary ${pkgs.slirp4netns}/bin/slirp4netns \
         --port-driver=builtin \
         -p 127.0.0.1:1455:1455/tcp \
         ${innerDrv}/bin/${name}
@@ -56,5 +63,8 @@ let
 in
 pkgs.symlinkJoin {
   name = "jailed-tools";
-  paths = [ jailed-env jailed-codex ];
+  paths = [
+    jailed-env
+    jailed-codex
+  ];
 }
