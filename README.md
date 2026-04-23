@@ -29,6 +29,38 @@ This repository exports multiple apps.
   nix flake show "github:<owner>/<repo>"
   ```
 
+## Use As A Flake Input
+
+If you want to install the wrappers into `environment.systemPackages`, use the exported package instead of `apps`.
+
+```nix flake
+{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    codex-jail.url = "github:<owner>/<repo>";
+  };
+
+```
+``` sub module 
+{pkgs,...}:let 
+
+jailed-agent = inputs.codex-jail.packages.${pkgs.stdenv.hostPlatform.system}.default;
+
+in {
+
+}
+
+```
+
+This package installs both binaries:
+
+```bash
+jailed-env
+jailed-codex
+```
+
+If you specifically want the `nix run` interface, the same flake also exports `apps.${system}.default`, `apps.${system}.jailed-env`, and `apps.${system}.jailed-codex`.
+
 ## TODO
 
 Figure out how podman handles persistent files without mount fd.
