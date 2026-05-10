@@ -35,6 +35,7 @@ let
         (set-env "SHELL" program)
         network
         (add-runtime "export BROWSER=firefox")
+        (add-runtime "export CODEX_SESSIONS_DIR=\"$(pwd)\"")
         open-urls-in-browser
         (set-argv argv)
       ]
