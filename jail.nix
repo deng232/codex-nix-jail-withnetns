@@ -29,13 +29,14 @@ let
         # Nix profile is a symlink tree; the store must be visible too.
         (readonly "/nix/store")
         (readonly codexProfile)
+        (rw-bind (noescape ''"$HOME/.codex"'') "/tmp/.codex")
 
         (set-env "PATH" "${codexProfile}/bin")
         (set-env "HOME" "/tmp")
         (set-env "SHELL" program)
         network
         (add-runtime "export BROWSER=firefox")
-        (add-runtime "export CODEX_SESSIONS_DIR=\"$(pwd)\"")
+
         open-urls-in-browser
         (set-argv argv)
       ]
